@@ -2,6 +2,134 @@
 <html lang="en">
 <head>
   <title>Proyecto RV - Simulador de apagado de inciendos</title>
+  
+  <style>
+            #editorToolbar{
+                border: 2px solid black;
+                margin: 10px;
+                padding: 10px;
+                width:45%;
+                float:right;
+            }
+            
+            div.helper{
+                border: 2px solid black;
+                margin: 10px;
+                padding: 10px;
+                width:43%;
+                float:right;
+            }
+            div.content{
+                border: 2px solid black;
+                width:32%;
+                display: block;
+                margin-top: 10px;
+                float: left;
+            }
+            
+            div.content100{
+                border: 2px solid black;
+                width:100%;
+                display: block;
+                margin-top: 10px;
+                float: left;
+            }
+            
+            div.menu{
+                border: 2px solid black;
+                width:100%;
+                display: block;
+                margin-top: 10px;
+                float: left;
+            }
+            
+            h1{
+                text-align: center;
+            }
+            
+            select{
+                display: block-inline;
+            }
+            
+            select.multiple{
+                display: block;
+                width: 100%;
+            }
+            
+            input{
+            display: block-inline;
+            margin: 5px;
+            }
+        </style>
+        
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
+        <script type="text/javascript" src="webgl-utils.js"></script>
+        
+        <!-- Esto es el Fragment Shader: El que controla el color de las cosas-->
+        <script id="shader-fs" type="x-shader/x-fragment">
+            precision mediump float;
+
+            varying vec2 vTextureCoord;
+            varying vec3 vLightWeighting;
+
+            uniform sampler2D uSampler;
+
+            void main(void) {
+                vec4 textureColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
+                gl_FragColor = vec4(textureColor.rgb * vLightWeighting, textureColor.a);
+            }
+        </script>
+        
+        
+        <!-- Esto es el Vertex Shader: Controla la posicion de los vertices-->
+        <script id="shader-vs" type="x-shader/x-vertex">
+            attribute vec3 aVertexPosition;
+            attribute vec3 aVertexNormal;
+            attribute vec2 aTextureCoord;
+
+            uniform mat4 uMVMatrix;
+            uniform mat4 uPMatrix;
+            uniform mat3 uNMatrix;
+
+            uniform vec3 uAmbientColor;
+
+            uniform vec3 uLightingDirection;
+            uniform vec3 uDirectionalColor;
+
+            uniform bool uUseLighting;
+
+            varying vec2 vTextureCoord;
+            varying vec3 vLightWeighting;
+
+            void main(void) {
+            
+                //vec3 aVertexNormalNormalized = normalize(aVertexNormal);
+                //vec3 uLightingDirectionNormalized = normalize(uLightingDirection);
+            
+                gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+                vTextureCoord = aTextureCoord;
+
+                if (false) {
+                    vLightWeighting = vec3(1.0, 1.0, 1.0);
+                } else {
+                    vec3 transformedNormal = uNMatrix * aVertexNormal;
+                    float directionalLightWeighting = max(dot(transformedNormal, uLightingDirection), 0.0);
+                    vLightWeighting = uAmbientColor + uDirectionalColor * directionalLightWeighting;
+                    //vLightWeighting = normalize(vLightWeightingA);
+                }
+            }
+        </script>
+        
+        <script type="text/javascript" src="ModelClass.js"></script>
+        <script type="text/javascript" src="BarrelClass.js"></script>
+        <script type="text/javascript" src="TochaClass.js"></script>
+        <script type="text/javascript" src="SphereClass.js"></script>
+        <script type="text/javascript" src="WebGL.js"></script>
+        <script type="text/javascript" src="Editor.js"></script>
+        <script type="text/javascript" src="project.js"></script>
+  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -123,7 +251,8 @@ Mauris mi mauris, pretium quis efficitur ornare, feugiat eget ante. Donec gravid
         
         <div class="row">
             <div class="col-sm-12">
-                <img src="img/logo.png" class="img-responsive"/>
+                <!-- AQUI ESTA EL CAMBAS DE WEBGL -->
+                <canvas id="lesson01-canvas" style="border: none; float:left;" width="640" height="480"></canvas>
             </div>
             
         </div>
