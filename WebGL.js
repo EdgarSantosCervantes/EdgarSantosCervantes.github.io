@@ -32,7 +32,7 @@ class WebGLManager{
         
         //La luz
         this.ambientLight = [0.2,0.2,0.2];                              //El color de la luz ambiental
-        this.directionalLight = [ [-1.0,-1.0,0.0], [0.5,0.5,0.5] ];       //La luz direccional, el elemento[0] es el vector de dirección, el elemento[1] es el color de la luz
+        this.directionalLight = [ [0.0,0.0,0.0], [0.0,0.0,0.0] ];       //La luz direccional, el elemento[0] es el vector de dirección, el elemento[1] es el color de la luz
         
         //La esfera de la colisión
         this.sphereCollision;

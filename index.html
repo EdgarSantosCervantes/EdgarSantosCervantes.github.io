@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9g-Ef6loDwIupnMZdmS-S-feVOgNJ8Vc"></script>
+
 <html lang="en">
 <head>
   <title>Proyecto RV - Simulador de apagado de inciendos</title>
@@ -60,6 +62,13 @@
             display: block-inline;
             margin: 5px;
             }
+      
+      
+      #themap{
+          width:100%;
+          height: 400px;
+          background-color: aqua;
+      }
         </style>
         
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -122,14 +131,17 @@
             }
         </script>
         
-        <script type="text/javascript" src="ModelClass.js"></script>
+        <!--<script type="text/javascript" src="ModelClass.js"></script>
         <script type="text/javascript" src="BarrelClass.js"></script>
         <script type="text/javascript" src="TochaClass.js"></script>
         <script type="text/javascript" src="ExtintorClass.js"></script>
         <script type="text/javascript" src="SphereClass.js"></script>
         <script type="text/javascript" src="WebGL.js"></script>
         <script type="text/javascript" src="Editor.js"></script>
-        <script type="text/javascript" src="project.js"></script>
+        <script type="text/javascript" src="project.js"></script>-->
+    
+    
+    
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -323,16 +335,23 @@
         
         
         <div class="row" id="virtual">
-            <div class="col-sm-12"><h1 class="text-center">Recorrido virtual por el aptico</h1></div>
-        </div>
-        
-        <div class="row">
-            <div class="col-sm-12">
-                <!-- AQUI ESTA EL CANVAS DE WEBGL -->
-                <canvas id="lesson01-canvas" style="border: none; float:left;" width="640" height="480"></canvas>
+            <div class="col-sm-12"><h1 class="text-center">
+                Recorrido virtual por el escenario</h1>
+                <br>
+                <a class="btn btn-primary btn-block btn-lg" style="margin: auto; border: 5px;" href="https://neethermit.github.io/PolyRace/Kitchen.html">Ver la cocina</a>
+                <br>
+                
             </div>
             
         </div>
+        
+        <!--<div class="row">
+            <div class="col-sm-12">
+                <!-- AQUI ESTA EL CANVAS DE WEBGL -->
+                <!--<canvas id="lesson01-canvas" style="border: none; float:left;" width="640" height="480"></canvas>
+            </div>
+            
+        </div>-->
         
         <div class="blue">
             
@@ -342,17 +361,17 @@
             
             <div class="row">
                 <div class="col-sm-4">
-                    <img src="img/bg.png" class="img-responsive"/>
+                    <img src="img/RV_00005.png" class="img-responsive"/>
                     <h1>Yamil Enrique Yáñez Morales</h1>
                     <h3>Programador del Motor Gráfico</h3>
                 </div>
                 <div class="col-sm-4">
-                    <img src="img/esteban.png" class="img-responsive"/>
+                    <img src="img/RV_00001.png" class="img-responsive"/>
                     <h1>Esteban Eduardo Cerda Sepúlveda</h1>
                     <h3>Programador del Háptico</h3>
                 </div>
                 <div class="col-sm-4">
-                    <img src="img/luis.png" class="img-responsive"/>
+                    <img src="img/RV_00003.png" class="img-responsive"/>
                     <h1>Luis Carlos Núñez Guerra</h1>
                     <h3>Investigación y Documentación</h3>
                 </div>
@@ -360,17 +379,17 @@
             
             <div class="row">
                 <div class="col-sm-4">
-                    <img src="img/salvador.png" class="img-responsive"/>
+                    <img src="img/RV_00004.png" class="img-responsive"/>
                     <h1>Salvador Teniente Martínez</h1>
                     <h3>Multimedia y Difusión</h3>
                 </div>
                 <div class="col-sm-4">
-                    <img src="img/jerson.png" class="img-responsive"/>
+                    <img src="img/RV_00002.png" class="img-responsive"/>
                     <h1>Jerson</h1>
                     <h3>Modelador y Animador</h3>
                 </div>
                 <div class="col-sm-4">
-                    <img src="img/edgar.png" class="img-responsive"/>
+                    <img src="img/RV_00000.png" class="img-responsive"/>
                     <h1>Edgar Abraham Santos Cervantes</h1>
                     <h3>Programador Web</h3>
                 </div>
@@ -381,7 +400,7 @@
         
         
         <div class="row" id="us">
-            <div class="col-sm-12"><h1 class="text-center">¡Visítamos en la Expo LMAD de Mayo!</h1></div>
+            <div class="col-sm-12"><h1 class="text-center">¡Visítamos en la Expo LMAD!</h1></div>
         </div>
         <div class="row">
             <div class="col-sm-12"><h2 class="text-center">Estaremos en la Facultad de Ciencias Fisico Matemáticas en Mayo.</h2></div>
@@ -392,10 +411,11 @@
         
         <div class="row">
             <div class="col-sm-6">
-                <img src="img/map.png" class="img-responsive"/>
+                <!--<img src="img/map.png" class="img-responsive"/>-->
+                <div id="themap"></div>
             </div>
             <div class="col-sm-6">
-                <div class="container-fluid">
+                <!--<div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-12">
                             <img src="img/youtube.png" width="50px" style="display:inline">
@@ -416,18 +436,17 @@
                             <h4 style="display:inline">APOLO</h4>
                         </div>
                     </div>
-                </div>
+                </div>-->
+                <h3>La Universidad Autónoma de Nuevo León se encuentra en:</h3>
+                <h4>Pedro de Alba S/N, Ciudad Universitaria, San Nicolás de los Garza, N.L.</h4>
+                
             </div>
         </div>
         
     </div>
     
 <div class="apolo-footer">
-    <h4>ESTO ES EL FOOTER: APOLO S.A. 2018</h4>
-    <br>
-    <br>
-    <br>
-    <br>
+    <h4>APOLO. Apaga los incendios, prolonga tu vida.</h4>
     <br>
     <br>
 </div>
@@ -435,3 +454,70 @@
 
 </body>
 </html>
+
+<script>
+        
+         //decl var google;
+        let map;
+        function loadMap(){
+		
+            let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+
+            let mapOptions = {
+                center: latLng,
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            
+            
+
+            map = new google.maps.Map($("#themap")[0], mapOptions);
+            //alert(map);
+            //this.updateMyPosition();
+
+        }
+    
+    function updateNavigating(position){
+		let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			
+        let directionsService = new google.maps.DirectionsService;
+        this.directionsDisplay = new google.maps.DirectionsRenderer;
+        
+        directionsDisplay.setMap(map);
+        
+		directionsService.route({
+			origin: latLng,
+			destination: new google.maps.LatLng(25.725583, -100.315195),
+			travelMode: google.maps.TravelMode['DRIVING']
+		}, (res, status)=>{
+			if(status == google.maps.DirectionsStatus.OK){
+				directionsDisplay.setDirections(res);
+				//this.lastPosition = position.coords;
+				//load.dismiss();
+			}
+			else{
+				//this.showAlert("","Hubo un error al tratar de conectarse con Google Maps. Por favor verifique su conexión a internet e inténtelo de nuevo.");
+				console.warn(status);
+				//load.dismiss();
+			}
+		});
+		
+	}
+    
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+            ///x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+        
+    $(document).ready(()=>{
+        loadMap();
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(updateNavigating);
+        }
+    });
+        
+        
+    </script>
